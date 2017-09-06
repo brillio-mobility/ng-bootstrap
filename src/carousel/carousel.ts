@@ -12,21 +12,21 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import {NgbCarouselConfig} from './carousel-config';
+import { NgbCarouselConfig } from './carousel-config';
 
 let nextId = 0;
 
 /**
  * Represents an individual slide to be used within a carousel.
  */
-@Directive({selector: 'ng-template[ngbSlide]'})
+@Directive({ selector: 'ng-template[ngbSlide]' })
 export class NgbSlide {
   /**
    * Unique slide identifier. Must be unique for the entire document for proper accessibility support.
    * Will be auto-generated if not provided.
    */
   @Input() id = `ngb-slide-${nextId++}`;
-  constructor(public tplRef: TemplateRef<any>) {}
+  constructor(public tplRef: TemplateRef<any>) { }
 }
 
 /**
@@ -44,28 +44,26 @@ export class NgbSlide {
     '(keydown.arrowLeft)': 'keyPrev()',
     '(keydown.arrowRight)': 'keyNext()'
   },
-  template: `
-    <ol class="carousel-indicators">
-      <li *ngFor="let slide of slides" [id]="slide.id" [class.active]="slide.id === activeId" 
-          (click)="cycleToSelected(slide.id, _getSlideEventDirection(activeId, slide.id))"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div *ngFor="let slide of slides" class="carousel-item" [class.active]="slide.id === activeId">
-        <ng-template [ngTemplateOutlet]="slide.tplRef"></ng-template>
+  template: `<div class="carousel-inner" role="listbox">
+        <div *ngFor="let slide of slides" class="item" [class.active]="slide.id === activeId">
+          <ng-template [ngTemplateOutlet]="slide.tplRef"></ng-template>
+        </div>
       </div>
-    </div>
-    <a class="carousel-control-prev" role="button" (click)="cycleToPrev()">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" role="button" (click)="cycleToNext()">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+      <ol class="carousel-indicators">
+        <li *ngFor="let slide of slides" [id]="slide.id" [class.active]="slide.id === activeId" (click)="cycleToSelected(slide.id)"></li>
+      </ol>
+      <a class="left carousel-control" role="button" (click)="cycleToPrev()">
+        <i class="demo-icon icon-015"></i>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" role="button" (click)="cycleToNext()">
+        <i class="demo-icon icon-016"></i>
+        <span class="sr-only">Next</span>
+      </a>
     `
 })
 export class NgbCarousel implements AfterContentChecked,
-    OnDestroy, OnInit, OnChanges {
+  OnDestroy, OnInit, OnChanges {
   @ContentChildren(NgbSlide) slides: QueryList<NgbSlide>;
   private _slideChangeInterval;
 
@@ -158,7 +156,7 @@ export class NgbCarousel implements AfterContentChecked,
     let selectedSlide = this._getSlideById(slideIdx);
     if (selectedSlide) {
       if (selectedSlide.id !== this.activeId) {
-        this.slide.emit({prev: this.activeId, current: selectedSlide.id, direction: direction});
+        this.slide.emit({ prev: this.activeId, current: selectedSlide.id, direction: direction });
       }
       this.activeId = selectedSlide.id;
     }
@@ -204,7 +202,7 @@ export class NgbCarousel implements AfterContentChecked,
     const isLastSlide = currentSlideIdx === slideArr.length - 1;
 
     return isLastSlide ? (this.wrap ? slideArr[0].id : slideArr[slideArr.length - 1].id) :
-                         slideArr[currentSlideIdx + 1].id;
+      slideArr[currentSlideIdx + 1].id;
   }
 
   private _getPrevSlide(currentSlideId: string): string {
@@ -213,7 +211,7 @@ export class NgbCarousel implements AfterContentChecked,
     const isFirstSlide = currentSlideIdx === 0;
 
     return isFirstSlide ? (this.wrap ? slideArr[slideArr.length - 1].id : slideArr[0].id) :
-                          slideArr[currentSlideIdx - 1].id;
+      slideArr[currentSlideIdx - 1].id;
   }
 
   private _getSlideEventDirection(currentActiveSlideId: string, nextActiveSlideId: string): NgbSlideEventDirection {
