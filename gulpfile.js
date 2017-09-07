@@ -96,7 +96,8 @@ gulp.task('npm', function() {
   var targetPkgJson = {};
   var fieldsToCopy = ['version', 'description', 'keywords', 'author', 'repository', 'license', 'bugs', 'homepage'];
 
-  targetPkgJson['name'] = '@ng-bootstrap/ng-bootstrap';
+  //targetPkgJson['name'] = '@ng-bootstrap/ng-bootstrap';
+  targetPkgJson['name'] = '@brillio-mobility/ng-bootstrap';
 
   fieldsToCopy.forEach(function(field) { targetPkgJson[field] = pkgJson[field]; });
 
