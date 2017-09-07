@@ -12,21 +12,21 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { NgbCarouselConfig } from './carousel-config';
+import {NgbCarouselConfig} from './carousel-config';
 
 let nextId = 0;
 
 /**
  * Represents an individual slide to be used within a carousel.
  */
-@Directive({ selector: 'ng-template[ngbSlide]' })
+@Directive({selector: 'ng-template[ngbSlide]'})
 export class NgbSlide {
   /**
    * Unique slide identifier. Must be unique for the entire document for proper accessibility support.
    * Will be auto-generated if not provided.
    */
   @Input() id = `ngb-slide-${nextId++}`;
-  constructor(public tplRef: TemplateRef<any>) { }
+  constructor(public tplRef: TemplateRef<any>) {}
 }
 
 /**
@@ -63,7 +63,7 @@ export class NgbSlide {
     `
 })
 export class NgbCarousel implements AfterContentChecked,
-  OnDestroy, OnInit, OnChanges {
+    OnDestroy, OnInit, OnChanges {
   @ContentChildren(NgbSlide) slides: QueryList<NgbSlide>;
   private _slideChangeInterval;
 
@@ -156,7 +156,7 @@ export class NgbCarousel implements AfterContentChecked,
     let selectedSlide = this._getSlideById(slideIdx);
     if (selectedSlide) {
       if (selectedSlide.id !== this.activeId) {
-        this.slide.emit({ prev: this.activeId, current: selectedSlide.id, direction: direction });
+        this.slide.emit({prev: this.activeId, current: selectedSlide.id, direction: direction});
       }
       this.activeId = selectedSlide.id;
     }
@@ -202,7 +202,7 @@ export class NgbCarousel implements AfterContentChecked,
     const isLastSlide = currentSlideIdx === slideArr.length - 1;
 
     return isLastSlide ? (this.wrap ? slideArr[0].id : slideArr[slideArr.length - 1].id) :
-      slideArr[currentSlideIdx + 1].id;
+                         slideArr[currentSlideIdx + 1].id;
   }
 
   private _getPrevSlide(currentSlideId: string): string {
@@ -211,7 +211,7 @@ export class NgbCarousel implements AfterContentChecked,
     const isFirstSlide = currentSlideIdx === 0;
 
     return isFirstSlide ? (this.wrap ? slideArr[slideArr.length - 1].id : slideArr[0].id) :
-      slideArr[currentSlideIdx - 1].id;
+                          slideArr[currentSlideIdx - 1].id;
   }
 
   private _getSlideEventDirection(currentActiveSlideId: string, nextActiveSlideId: string): NgbSlideEventDirection {
