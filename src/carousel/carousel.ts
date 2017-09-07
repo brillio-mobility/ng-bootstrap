@@ -50,7 +50,8 @@ export class NgbSlide {
         </div>
       </div>
       <ol class="carousel-indicators">
-        <li *ngFor="let slide of slides" [id]="slide.id" [class.active]="slide.id === activeId" (click)="cycleToSelected(slide.id)"></li>
+        <li *ngFor="let slide of slides" [id]="slide.id" [class.active]="slide.id === activeId"
+        (click)="cycleToSelected(slide.id, _getSlideEventDirection(activeId, slide.id))"></li>
       </ol>
       <a class="left carousel-control" role="button" (click)="cycleToPrev()">
         <i class="demo-icon icon-015"></i>

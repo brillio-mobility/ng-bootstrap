@@ -1,6 +1,6 @@
 {
-  "name": "@brillio-mobility/ng-bootstrap",
-  "version": "1.0.0-beta.3",
+  "name": "ng-bootstrap-brillio",
+  "version": "1.0.1",
   "description": "Angular powered Bootstrap",
   "keywords": [
     "angular",
@@ -23,19 +23,16 @@
     "tooltip",
     "typeahead"
   ],
-  "author": "https://github.com/ng-bootstrap/ng-bootstrap/graphs/contributors",
+  "author": "Ranjith GN<ranjithgn@rocketmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ng-bootstrap/ng-bootstrap.git"
+    "url": "git+https://github.com/brillio-mobility/ng-bootstrap.git"
   },
   "license": {
     "type": "MIT",
-    "url": "https://raw.githubusercontent.com/ng-bootstrap/ng-bootstrap/master/LICENSE"
+    "url": "https://raw.githubusercontent.com/brillio-mobility/ng-bootstrap/master/LICENSE"
   },
-  "bugs": {
-    "url": "https://github.com/ng-bootstrap/ng-bootstrap/issues"
-  },
-  "homepage": "https://github.com/ng-bootstrap/ng-bootstrap#readme",
+  "homepage": "https://github.com/brillio-mobility/ng-bootstrap#readme",
   "main": "bundles/ng-bootstrap.js",
   "module": "index.js",
   "typings": "index.d.ts",
