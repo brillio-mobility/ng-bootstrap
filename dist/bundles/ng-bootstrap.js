@@ -4352,7 +4352,7 @@ NgbModalWindow = __decorate([
     core_1.Component({
         selector: 'ngb-modal-window',
         host: {
-            '[class]': '"modal fade show" + (windowClass ? " " + windowClass : "")',
+            '[class]': '"modal fade in" + (windowClass ? " " + windowClass : "")',
             'role': 'dialog',
             'tabindex': '-1',
             'style': 'display: block;',
